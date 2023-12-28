@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    regexp_parser (2.8.3)
+    rexml (3.2.6)
+    rubyzip (2.3.2)
+    selenium-webdriver (4.16.0)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
+    watir (7.3.0)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.2)
+    websocket (1.2.10)
+
+PLATFORMS
+  x86_64-darwin-22
+
+DEPENDENCIES
+  watir
+
+RUBY VERSION
+   ruby 3.2.2p53
+
+BUNDLED WITH
+   2.4.12
