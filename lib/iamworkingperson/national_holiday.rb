@@ -14,7 +14,7 @@ class NationalHoliday
               date
             else
               today = Date.today
-              @date ||= Date.new(today.year, today.month, 1)
+              Date.new(today.year, today.month, 1)
             end
   end
 
