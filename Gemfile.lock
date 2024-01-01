@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
     regexp_parser (2.8.3)
     rexml (3.2.6)
     rspec (3.12.0)
@@ -29,13 +30,15 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-darwin-23
 
 DEPENDENCIES
+  dotenv
   rspec
   watir
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.4.12
