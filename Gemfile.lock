@@ -29,8 +29,7 @@ GEM
     websocket (1.2.10)
 
 PLATFORMS
-  x86_64-darwin-22
-  x86_64-darwin-23
+  ruby
 
 DEPENDENCIES
   dotenv
