@@ -9,6 +9,7 @@ jobs:
   run-batch:
     runs-on: ubuntu-latest
     steps:
+    - uses: browser-actions/setup-chrome@v1
     - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
