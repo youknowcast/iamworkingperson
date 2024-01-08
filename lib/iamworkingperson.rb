@@ -6,7 +6,7 @@ require_relative './iamworkingperson/national_holiday'
 
 Dotenv.load
 
-return unless NationalHoliday.new.fetch.include?(Date.today.day) || !ENV.fetch('DEBUG', false)
+return if NationalHoliday.new.fetch.include?(Date.today.day) || ENV.fetch('DEBUG', false)
 
 browser = Watir::Browser.new
 browser.goto 'https://id.jobcan.jp/users/sign_in?app_key=atd'
