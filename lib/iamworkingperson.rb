@@ -6,9 +6,11 @@ require_relative './iamworkingperson/national_holiday'
 
 Dotenv.load
 
-return if NationalHoliday.new.fetch.include?(Date.today.day) || ENV.fetch('DEBUG', false)
+unless ENV.fetch('DEBUG', false)
+  return if NationalHoliday.new.fetch.include?(Date.today.day)
+end
 
-browser = Watir::Browser.new
+browser = Watir::Browser.new(:chrome, headless: true)
 browser.goto 'https://id.jobcan.jp/users/sign_in?app_key=atd'
 browser.text_field(name: 'user[email]').set ENV.fetch('ACCOUNT_NAME')
 browser.text_field(name: 'user[password]').set ENV.fetch('ACCOUNT_PASSWORD')
@@ -21,3 +23,4 @@ browser.button(name: 'adit_item').click
 #browser.screenshot.save 'screenshot.png'
 
 browser.close
+
