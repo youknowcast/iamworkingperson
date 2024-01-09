@@ -14,9 +14,7 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.3'
-    - name: Install dependencies
-      run: |
-        bundle install
+        bundle-cache: true
     - name: Run
       env:
         ACCOUNT_NAME: ${{ secrets.ACCOUNT_NAME }}
