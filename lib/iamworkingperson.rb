@@ -18,10 +18,10 @@ browser.text_field(name: 'user[password]').set ENV.fetch('ACCOUNT_PASSWORD')
 browser.button(name: 'commit').click
 
 browser.goto 'https://ssl.jobcan.jp/employee'
-#browser.button(name: 'adit_item').click
+browser.button(name: 'adit_item').click
 
 # debug
-browser.screenshot.save 'screenshot.png'
+# browser.screenshot.save 'screenshot.png'
 
 browser.close
 
