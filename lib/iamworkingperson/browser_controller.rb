@@ -55,8 +55,7 @@ class BrowserController
 
   def punch!
     browser.goto 'https://ssl.jobcan.jp/employee'
-    # browser.button(name: 'adit_item').click
-    p 'aaa'
+    browser.button(name: 'adit_item').click
   end
 
   def check_login!
