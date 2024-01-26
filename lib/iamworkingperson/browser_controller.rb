@@ -17,7 +17,7 @@ class BrowserController
     return unless callable?
 
     session do
-      debug_mode? ? check_login! : punch!
+      check_mode? ? check_login! : punch!
     end
   end
 
@@ -25,12 +25,12 @@ class BrowserController
 
   attr_reader :browser
 
-  def debug_mode?
-    ENV.fetch('DEBUG', false)
+  def check_mode?
+    !ENV.fetch('CHECK', nil).nil?
   end
 
   def callable?
-    debug_mode? || not_holiday?
+    check_mode? || not_holiday?
   end
 
   def not_holiday?
@@ -39,11 +39,17 @@ class BrowserController
   end
 
   def session
-    @browser = Watir::Browser.new(:chrome, url: 'http://127.0.0.1:4444/wd/hub')
+    @browser = create_browser
 
     login
     yield
     browser.close
+  end
+
+  def create_browser
+    Watir::Browser.new(:chrome, headless: true)
+  rescue StandardError
+    Watir::Browser.new(:chrome, url: 'http://127.0.0.1:4444/wd/hub')
   end
 
   def login

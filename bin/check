@@ -4,7 +4,7 @@ exec ruby -x "$0" "$@"
 require 'dotenv'
 
 Dotenv.load
-ENV.update('DEBUG' => 'true')
+ENV.update('CHECK' => 'true')
 
 system('rm screenshot.png')
 
