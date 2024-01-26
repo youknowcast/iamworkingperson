@@ -3,6 +3,7 @@
 require 'watir'
 require 'dotenv'
 require_relative './national_holiday'
+require_relative './personal_holiday'
 
 ##
 # Calls the `call!` method on a new instance of BrowserController.
@@ -17,7 +18,7 @@ class BrowserController
     return unless callable?
 
     session do
-      debug_mode? ? check_login! : punch!
+      check_mode? ? check_login! : punch!
     end
   end
 
@@ -25,25 +26,30 @@ class BrowserController
 
   attr_reader :browser
 
-  def debug_mode?
-    ENV.fetch('DEBUG', false)
+  def check_mode?
+    !ENV.fetch('CHECK', nil).nil?
   end
 
   def callable?
-    debug_mode? || not_holiday?
+    check_mode? || (not_national_holiday? && not_personal_holiday?)
   end
 
-  def not_holiday?
-    day_in_jp = (Time.now.utc + (9 * 60 * 60)).day
-    !NationalHoliday.new.fetch.include?(day_in_jp)
-  end
+  def day_in_jp = @day_in_jp ||= (Time.now.utc + (9 * 60 * 60)).day
+  def not_national_holiday? = !NationalHoliday.new.fetch.include?(day_in_jp)
+  def not_personal_holiday? = !PersonalHoliday.new.fetch.include?(day_in_jp)
 
   def session
-    @browser = Watir::Browser.new(:chrome, url: 'http://127.0.0.1:4444/wd/hub')
+    @browser = create_browser
 
     login
     yield
     browser.close
+  end
+
+  def create_browser
+    Watir::Browser.new(:chrome, headless: true)
+  rescue StandardError
+    Watir::Browser.new(:chrome, url: 'http://127.0.0.1:4444/wd/hub')
   end
 
   def login

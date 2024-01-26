@@ -8,10 +8,7 @@ RSpec.describe NationalHoliday do
 
     before do
       allow_any_instance_of(NationalHoliday).to receive(:holidays).and_return(
-        {
-          '2023-01-01' => '元日',
-          '2023-01-02' => '休日'
-        }
+        %w[2023-01-01 2023-01-02]
       )
     end
 
