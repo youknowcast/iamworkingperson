@@ -1,0 +1,13 @@
+#!/bin/sh
+exec ruby -x "$0" "$@"
+#!ruby
+require 'dotenv'
+
+Dotenv.load
+ENV.update('DEBUG' => 'true')
+
+system('rm screenshot.png')
+
+require_relative '../lib/iamworkingperson'
+
+system('open screenshot.png')
