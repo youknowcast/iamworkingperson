@@ -3,6 +3,7 @@
 require 'watir'
 require 'dotenv'
 require_relative './national_holiday'
+require_relative './personal_holiday'
 
 ##
 # Calls the `call!` method on a new instance of BrowserController.
@@ -30,13 +31,12 @@ class BrowserController
   end
 
   def callable?
-    check_mode? || not_holiday?
+    check_mode? || (not_national_holiday? && not_personal_holiday?)
   end
 
-  def not_holiday?
-    day_in_jp = (Time.now.utc + (9 * 60 * 60)).day
-    !NationalHoliday.new.fetch.include?(day_in_jp)
-  end
+  def day_in_jp = @day_in_jp ||= (Time.now.utc + (9 * 60 * 60)).day
+  def not_national_holiday? = !NationalHoliday.new.fetch.include?(day_in_jp)
+  def not_personal_holiday? = !PersonalHoliday.new.fetch.include?(day_in_jp)
 
   def session
     @browser = create_browser
