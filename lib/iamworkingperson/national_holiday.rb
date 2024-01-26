@@ -4,6 +4,7 @@ require 'net/http'
 require 'json'
 require 'date'
 
+# NationalHoliday class represents a utility to fetch national holidays in Japan.
 class NationalHoliday
   API_ENDPOINT = 'https://holidays-jp.github.io/api/v1/date.json'
   private_constant :API_ENDPOINT
@@ -21,7 +22,7 @@ class NationalHoliday
   def fetch
     ret = []
 
-    holidays.each do |k, _|
+    holidays.each_key do |k|
       t = Date.parse(k)
       ret << t.day if t.year == date.year && t.month == date.month
     end
