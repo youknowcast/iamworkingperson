@@ -3,7 +3,7 @@ name: iamworkingperson
 on:
   schedule:
     - cron: '40 23 * * 0-4'
-    - cron: '30 8 * * 1-5'
+    - cron: '30 9 * * 1-5'
 
 jobs:
   run-batch:
