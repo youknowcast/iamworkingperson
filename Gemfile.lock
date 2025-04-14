@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.3)
     diff-lcs (1.5.1)
-    dotenv (3.1.7)
+    dotenv (3.1.8)
     json (2.10.2)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
