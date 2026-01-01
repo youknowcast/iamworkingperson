@@ -76,7 +76,7 @@ DEPENDENCIES
   webdrivers (~> 5.3)
 
 RUBY VERSION
-   ruby 3.3.7p123
+   ruby 4.0.0
 
 BUNDLED WITH
    2.5.10
